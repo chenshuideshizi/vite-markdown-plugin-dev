@@ -1,9 +1,17 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-const {resolve} = require('path')
+import md from './plugins/md'
+import docs from './plugins/docs'
+const { resolve } = require('path')
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    docs(),
+    md(),
+    vue({
+      include: [/\.vue$/, /\.md$/]
+    })
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, './src')
